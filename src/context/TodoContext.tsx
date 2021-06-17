@@ -1,29 +1,43 @@
 import React, { createContext, useState, FC } from "react";
-import { TodosContextState } from "./types";
 
-const contextDefaultValues: TodosContextState = {
-  todos: [],
-  addTodo: () => {}
-};
 
-export const TodosContext = createContext<TodosContextState>(
-  contextDefaultValues
-);
+
+
+
+export const TodosContext = createContext<
+ContextType | undefined
+>(undefined);;
 
 const TodosProvider: FC = ({ children }) => {
-  const [todos, setTodos] = useState<string[]>(contextDefaultValues.todos);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  const addTodo = (newTodo: string) => setTodos((todos) => [...todos, newTodo]);
+  const saveTodo = (todo: Todo) => {
+    setTodos([...todos, todo])
+    
+  }
+
+  const removeTodo = (id: number) => {
+    const selectedTodos= todos.filter((todo: Todo) => todo.id !== id )   
+    setTodos(selectedTodos)
+  }
+  const updateTodo =(id: number) => {
+    todos.filter((todo: Todo) => {
+      if (todo.id === id) {
+        todo.status = !todo.status
+        setTodos([...todos])
+      }
+    })
+    console.log(todos)
+  }
 
   return (
-    <TodosContext.Provider
-      value={{
-        todos,
-        addTodo
-      }}
+    <TodosContext.Provider 
+      value={{todos, saveTodo, removeTodo, updateTodo}}
     >
       {children}
+
     </TodosContext.Provider>
+    
   );
 };
 

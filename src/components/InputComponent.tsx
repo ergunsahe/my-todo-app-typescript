@@ -3,17 +3,26 @@ import { Wrapper, StyledButton, StyledInput } from './Styled.components'
 import { TodosContext } from "../context/TodoContext";
 
 const InputComponent: React.FC = () => {
-    const [todo, setTodo] =React.useState<string>("")
-    const { addTodo } = useContext(TodosContext);
+    // const [text, setText] = React.useState<string>()
+    const [todo, setTodo] =React.useState<Todo>({id:0, title:"deneme", status:false})
+    const { saveTodo } = useContext(TodosContext) as ContextType
     
 
-    const onChangeText = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ): void => setTodo(event.target.value)
+    const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newTodo = {
+            //this is not an unique id. It is created only for simulation
+        id: Math.round(Math.random()) * 100,
+        title: event.currentTarget.value,
+        status: false,
+      }
+      setTodo(newTodo)
+      
+    }
     
 
-    const onSubmit = (event: React.MouseEvent<HTMLElement>) => {
-        addTodo(todo)
+    const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+        
+        saveTodo(todo)
     }
   
     return (
