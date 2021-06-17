@@ -17,26 +17,27 @@ import { TodosContext } from "../context/TodoContext";
     
   }
 
-  // React.useEffect(() =>{
-  //   if (filter === "To do"){
-  //     const selectedTodos = todoList.filter((todo: Todo) => (todo.status === false));
-  //     setTodoList(selectedTodos)
-  //   }else if (filter === "Done") {
-  //     const selectedTodos = todoList.filter((todo: Todo) => (todo.status === true));
-  //     setTodoList(selectedTodos)
-  //   }else{
-  //     setTodoList(todos)
-  //   }
-  // }, [filter, todos])
+  React.useEffect(() =>{
+    let list:[] ;
+    if (filter === "To do"){
+      const selectedTodos = todos.filter((todo: Todo) => (todo.status === false));
+      setTodoList(selectedTodos)
+    }else if (filter === "Done") {
+      const selectedTodos = todos.filter((todo: Todo) => (todo.status === true));
+      setTodoList(selectedTodos)
+    }else{
+      setTodoList(todos)
+    }
+  }, [filter, todos])
   return (
     <div>
       <div>
         {
           
-            todos.map((todo:Todo) => (
+            todoList.map((todo:Todo) => (
               <div style={{display:"flex"}} key={todo.id}>
               <div  style={{backgroundColor:todo.status ? "green":"red"}}>{todo.title}</div>
-              <input type="checkbox"  onChange={onCheck} id={todo.id.toString()}/>
+              <input type="checkbox" checked={todo.status ? true:false} onChange={onCheck} id={todo.id.toString()}/>
               <button onClick={onDelete} id={todo.id.toString()}>delete</button>
               </div>
             ))
