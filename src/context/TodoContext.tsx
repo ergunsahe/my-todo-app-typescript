@@ -10,6 +10,7 @@ ContextType | undefined
 
 const TodosProvider: FC = ({ children }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [filter, setFilter]= useState<string>("All");
 
   const saveTodo = (todo: Todo) => {
     setTodos([...todos, todo])
@@ -30,9 +31,13 @@ const TodosProvider: FC = ({ children }) => {
     console.log(todos)
   }
 
+  const filterTodo =(filter:string) =>{
+    setFilter(filter)
+  }
+
   return (
     <TodosContext.Provider 
-      value={{todos, saveTodo, removeTodo, updateTodo}}
+      value={{todos, saveTodo, removeTodo, updateTodo, filterTodo, filter}}
     >
       {children}
 

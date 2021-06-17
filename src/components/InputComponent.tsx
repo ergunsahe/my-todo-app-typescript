@@ -11,7 +11,7 @@ const InputComponent: React.FC = () => {
     const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newTodo = {
             //this is not an unique id. It is created only for simulation
-        id: Math.round(Math.random()) * 100,
+        id: Math.round(Math.random()* 100) ,
         title: event.currentTarget.value,
         status: false,
       }

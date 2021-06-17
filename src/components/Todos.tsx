@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { TodosContext } from "../context/TodoContext";
 
  const Todos = () => {
-  const { todos } = useContext(TodosContext) as ContextType;
+  const { todos, filter } = useContext(TodosContext) as ContextType;
   const { removeTodo, updateTodo } = useContext(TodosContext) as ContextType
+  const [todoList , setTodoList] = React.useState(todos)
 
   const onCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateTodo(parseInt(event.currentTarget.id))
@@ -15,16 +16,33 @@ import { TodosContext } from "../context/TodoContext";
     removeTodo(parseInt(e.currentTarget.id))
     
   }
+
+  // React.useEffect(() =>{
+  //   if (filter === "To do"){
+  //     const selectedTodos = todoList.filter((todo: Todo) => (todo.status === false));
+  //     setTodoList(selectedTodos)
+  //   }else if (filter === "Done") {
+  //     const selectedTodos = todoList.filter((todo: Todo) => (todo.status === true));
+  //     setTodoList(selectedTodos)
+  //   }else{
+  //     setTodoList(todos)
+  //   }
+  // }, [filter, todos])
   return (
     <div>
       <div>
-        {todos.map((todo:Todo) => (
-          <div style={{display:"flex"}} key={todo.id}>
-          <div  style={{backgroundColor:todo.status ? "green":"red"}}>{todo.title}</div>
-          <input type="checkbox"  onChange={onCheck} id={todo.id.toString()}/>
-          <button onClick={onDelete} id={todo.id.toString()}>delete</button>
-          </div>
-        ))}
+        {
+          
+            todos.map((todo:Todo) => (
+              <div style={{display:"flex"}} key={todo.id}>
+              <div  style={{backgroundColor:todo.status ? "green":"red"}}>{todo.title}</div>
+              <input type="checkbox"  onChange={onCheck} id={todo.id.toString()}/>
+              <button onClick={onDelete} id={todo.id.toString()}>delete</button>
+              </div>
+            ))
+          
+
+        }
       </div>
     </div>
   );

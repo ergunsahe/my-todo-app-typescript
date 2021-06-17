@@ -6,7 +6,9 @@ interface Todo {
 
 type ContextType = {
     todos: Todo[];
+    filter:string;
     saveTodo: (todo: Todo) => void;
     removeTodo: (id:number) => void;
-    updateTodo:(id:number) => void
+    updateTodo:(id:number) => void;
+    filterTodo:(filter:string) => void;
   };

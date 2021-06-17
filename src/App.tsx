@@ -3,6 +3,7 @@ import { MainWrapper } from './components/Styled.components';
 import "./App.css"
 import TodosProvider from "./context/TodoContext";
 import Todos from "./components/Todos"
+import DropdownList from './components/DropdownList';
 
 
 
@@ -13,6 +14,7 @@ const  App = () => {
     <TodosProvider>
       <MainWrapper >
         <InputComponent/>
+        <DropdownList/>
       </MainWrapper>
       <Todos/>
     </TodosProvider>

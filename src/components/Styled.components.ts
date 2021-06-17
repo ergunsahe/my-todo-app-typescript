@@ -3,9 +3,7 @@ import styled from "styled-components";
 export const MainWrapper = styled.div`
     
     background-color: green;
-   
-    justify-content: center;
-    align-items: center;
+    display: flex;
 `;
 export const Wrapper = styled.div`
     width: 200px;
