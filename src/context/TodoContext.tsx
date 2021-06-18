@@ -17,18 +17,19 @@ const TodosProvider: FC = ({ children }) => {
     
   }
 
-  const removeTodo = (id: number) => {
+  const removeTodo = (id: string) => {
     const selectedTodos= todos.filter((todo: Todo) => todo.id !== id )   
     setTodos(selectedTodos)
   }
-  const updateTodo =(id: number) => {
+  const updateTodo =(id: string) => {
     todos.filter((todo: Todo) => {
       if (todo.id === id) {
         todo.status = !todo.status
         setTodos([...todos])
+        
       }
+      return null
     })
-    console.log(todos)
   }
 
   const filterTodo =(filter:string) =>{

@@ -1,5 +1,5 @@
 interface Todo {
-  id: number
+  id: string
   title: string
   status: boolean
 }
@@ -8,7 +8,7 @@ type ContextType = {
     todos: Todo[];
     filter:string;
     saveTodo: (todo: Todo) => void;
-    removeTodo: (id:number) => void;
-    updateTodo:(id:number) => void;
+    removeTodo: (id:string) => void;
+    updateTodo:(id:string) => void;
     filterTodo:(filter:string) => void;
   };

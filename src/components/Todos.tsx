@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { TodosContext } from "../context/TodoContext";
-import {  TodoContainer } from "./Styled.components";
+import {  TodoContainer, StyledTodoWrapper, StyledTodo, StyledDelButton } from "./Styled.components";
 
  const Todos = () => {
   const { todos, filter } = useContext(TodosContext) as ContextType;
@@ -8,13 +8,13 @@ import {  TodoContainer } from "./Styled.components";
   const [todoList , setTodoList] = React.useState(todos)
 
   const onCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    updateTodo(parseInt(event.currentTarget.id))
-    console.log(parseInt(event.currentTarget.id))
+    updateTodo(event.currentTarget.id)
+   
     return event.currentTarget.checked
   }
   const onDelete = (e: React.MouseEvent<HTMLButtonElement> ) => {
     
-    removeTodo(parseInt(e.currentTarget.id))
+    removeTodo(e.currentTarget.id)
     
   }
 
@@ -31,22 +31,22 @@ import {  TodoContainer } from "./Styled.components";
     }
   }, [filter, todos])
   return (
-    <div>
+    
       <TodoContainer>
         {
           
             todoList.map((todo:Todo) => (
-              <div style={{display:"flex", margin:"20px"}} key={todo.id}>
-              <div  style={{backgroundColor:todo.status ? "green":"red"}}>{todo.title}</div>
-              <input type="checkbox" checked={todo.status ? true:false} onChange={onCheck} id={todo.id.toString()}/>
-              <button onClick={onDelete} id={todo.id.toString()}>delete</button>
-              </div>
+              <StyledTodoWrapper  key={todo.id}>
+                <StyledTodo  style={{backgroundColor:todo.status ? "#66DE93":"lightblue", textDecoration:todo.status ? "line-through":""}}>{todo.title}</StyledTodo>
+                <input style={{height:"1.5rem", marginLeft:"1rem"}} type="checkbox" checked={todo.status ? true:false} onChange={onCheck} id={todo.id.toString()}/>
+                <StyledDelButton  onClick={onDelete} id={todo.id.toString()}>Delete</StyledDelButton>
+              </StyledTodoWrapper>
             ))
           
 
         }
       </TodoContainer>
-    </div>
+    
   );
 };
 

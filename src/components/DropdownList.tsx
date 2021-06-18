@@ -8,7 +8,7 @@ const DropdownList = () => {
         filterTodo(event.currentTarget.value)
     }
     return (
-        <div>
+        <div style={{alignSelf:'flex-start'}}>
             <select name="selectList" id="selectList"
                 onChange={onSelect}
             
