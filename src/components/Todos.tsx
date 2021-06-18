@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { TodosContext } from "../context/TodoContext";
+import {  TodoContainer } from "./Styled.components";
 
  const Todos = () => {
   const { todos, filter } = useContext(TodosContext) as ContextType;
@@ -18,7 +19,7 @@ import { TodosContext } from "../context/TodoContext";
   }
 
   React.useEffect(() =>{
-    let list:[] ;
+    
     if (filter === "To do"){
       const selectedTodos = todos.filter((todo: Todo) => (todo.status === false));
       setTodoList(selectedTodos)
@@ -31,11 +32,11 @@ import { TodosContext } from "../context/TodoContext";
   }, [filter, todos])
   return (
     <div>
-      <div>
+      <TodoContainer>
         {
           
             todoList.map((todo:Todo) => (
-              <div style={{display:"flex"}} key={todo.id}>
+              <div style={{display:"flex", margin:"20px"}} key={todo.id}>
               <div  style={{backgroundColor:todo.status ? "green":"red"}}>{todo.title}</div>
               <input type="checkbox" checked={todo.status ? true:false} onChange={onCheck} id={todo.id.toString()}/>
               <button onClick={onDelete} id={todo.id.toString()}>delete</button>
@@ -44,7 +45,7 @@ import { TodosContext } from "../context/TodoContext";
           
 
         }
-      </div>
+      </TodoContainer>
     </div>
   );
 };
