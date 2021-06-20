@@ -8,12 +8,12 @@ export const Container = styled.div`
     /* background-color: green; */
     display: flex;
     flex-direction: column;
-    height:1000vh ;
+    /* height:1000vh ;
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
     background-attachment:fixed;
-    background-image: url(${background});
+    background-image: url(${background}); */
     
 `;
 
