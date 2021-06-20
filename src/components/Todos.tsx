@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { TodosContext } from "../context/TodoContext";
-import {  TodoContainer, StyledTodoWrapper, StyledTodo, StyledDelButton } from "./Styled.components";
+import {  TodoContainer, StyledTodoWrapper, StyledTodo, StyledDelButton, StyledCheckInput } from "./Styled.components";
 
  const Todos = () => {
   const { todos, filter } = useContext(TodosContext) as ContextType;
@@ -37,8 +37,18 @@ import {  TodoContainer, StyledTodoWrapper, StyledTodo, StyledDelButton } from "
           
             todoList.map((todo:Todo) => (
               <StyledTodoWrapper  key={todo.id}>
-                <StyledTodo  style={{backgroundColor:todo.status ? "#66DE93":"lightblue", textDecoration:todo.status ? "line-through":""}}>{todo.title}</StyledTodo>
-                <input style={{height:"1.5rem", marginLeft:"1rem"}} type="checkbox" checked={todo.status ? true:false} onChange={onCheck} id={todo.id.toString()}/>
+                <StyledTodo  style={{
+                  backgroundColor:todo.status ? 
+                  "#66DE93"
+                  :
+                  "lightblue", 
+                  textDecoration:todo.status ? 
+                  "line-through":
+                  ""}}
+                >
+                  {todo.title.length > 20 ? todo.title.substring(0,35) + "...":todo.title }
+                </StyledTodo>
+                <StyledCheckInput style={{}} type="checkbox" checked={todo.status ? true:false} onChange={onCheck} id={todo.id.toString()}/>
                 <StyledDelButton  onClick={onDelete} id={todo.id.toString()}>Delete</StyledDelButton>
               </StyledTodoWrapper>
             ))
