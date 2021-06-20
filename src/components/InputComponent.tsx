@@ -17,21 +17,32 @@ const InputComponent: React.FC = () => {
         status: false,
       }
       setTodo(newTodo)
-
+     
       
     }
     
 
-    const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const onSubmit = (event: React.MouseEvent<HTMLButtonElement> ) => {
+        
         if (todo.title === ""){
             alert("Please type someting...")
         }else{
+            
             saveTodo(todo)
             setTodo({id:"", title:"", status:false})
 
         }
         
     }
+    const onKeyboardSubmit = (event: React.KeyboardEvent<HTMLInputElement> ) => {
+        
+        if (event.key === "Enter"){
+            saveTodo(todo)
+            setTodo({id:"", title:"", status:false})
+        }
+        
+    }
+    
   
     return (
         <Wrapper>
@@ -41,6 +52,8 @@ const InputComponent: React.FC = () => {
             name="todo"
             onChange={onChangeText}
             value={todo.title}
+            onKeyPress={onKeyboardSubmit}
+            
             />
             <StyledButton  onClick={onSubmit}>Add</StyledButton>
         </Wrapper>

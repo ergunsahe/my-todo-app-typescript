@@ -12,7 +12,7 @@ import {  TodoContainer, StyledTodoWrapper, StyledTodo, StyledDelButton, StyledC
    
     return event.currentTarget.checked
   }
-  const onDelete = (e: React.MouseEvent<HTMLButtonElement> ) => {
+  const onDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     
     removeTodo(e.currentTarget.id)
     
